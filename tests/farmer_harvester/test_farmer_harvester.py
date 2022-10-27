@@ -4,10 +4,10 @@ import asyncio
 
 import pytest
 
-from chia.farmer.farmer import Farmer
-from chia.simulator.time_out_assert import time_out_assert
-from chia.types.peer_info import PeerInfo
-from chia.util.keychain import generate_mnemonic
+from floteo.farmer.farmer import Farmer
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.types.peer_info import PeerInfo
+from floteo.util.keychain import generate_mnemonic
 
 
 def farmer_is_started(farmer):

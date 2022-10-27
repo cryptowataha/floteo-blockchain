@@ -1,10 +1,10 @@
 from secrets import token_bytes
 import pytest
 
-from chia.types.blockchain_format.coin import Coin
-from chia.util.ints import uint64
+from floteo.types.blockchain_format.coin import Coin
+from floteo.util.ints import uint64
 
-from chia.wallet.wallet_interested_store import WalletInterestedStore
+from floteo.wallet.wallet_interested_store import WalletInterestedStore
 from tests.util.db_connection import DBConnection
 
 

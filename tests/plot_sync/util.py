@@ -5,16 +5,16 @@ from dataclasses import dataclass
 from secrets import token_bytes
 from typing import Optional
 
-from chia.farmer.farmer import Farmer
-from chia.harvester.harvester import Harvester
-from chia.plot_sync.sender import Sender
-from chia.protocols.harvester_protocol import PlotSyncIdentifier
-from chia.server.start_service import Service
-from chia.server.ws_connection import Message, NodeType
-from chia.simulator.time_out_assert import time_out_assert
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.peer_info import PeerInfo
-from chia.util.ints import uint64
+from floteo.farmer.farmer import Farmer
+from floteo.harvester.harvester import Harvester
+from floteo.plot_sync.sender import Sender
+from floteo.protocols.harvester_protocol import PlotSyncIdentifier
+from floteo.server.start_service import Service
+from floteo.server.ws_connection import Message, NodeType
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.peer_info import PeerInfo
+from floteo.util.ints import uint64
 
 
 @dataclass

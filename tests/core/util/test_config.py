@@ -8,7 +8,7 @@ import pytest
 import random
 import yaml
 
-from chia.util.config import (
+from floteo.util.config import (
     config_path_for_filename,
     create_default_chia_config,
     initial_config_file,

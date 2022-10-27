@@ -7,13 +7,13 @@ from typing import Any, AsyncGenerator, Dict, Optional, Tuple
 import pytest
 import pytest_asyncio
 
-from chia.simulator.full_node_simulator import FullNodeSimulator
-from chia.simulator.simulator_full_node_rpc_client import SimulatorFullNodeRpcClient
-from chia.simulator.simulator_test_tools import get_full_chia_simulator, get_puzzle_hash_from_key
-from chia.simulator.time_out_assert import time_out_assert
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.hash import std_hash
-from chia.util.ints import uint16
+from floteo.simulator.full_node_simulator import FullNodeSimulator
+from floteo.simulator.simulator_full_node_rpc_client import SimulatorFullNodeRpcClient
+from floteo.simulator.simulator_test_tools import get_full_chia_simulator, get_puzzle_hash_from_key
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.util.hash import std_hash
+from floteo.util.ints import uint16
 
 
 async def get_num_coins_for_ph(simulator_client: SimulatorFullNodeRpcClient, ph: bytes32) -> int:

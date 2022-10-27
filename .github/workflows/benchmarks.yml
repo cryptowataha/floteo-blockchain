@@ -28,7 +28,7 @@ jobs:
       matrix:
         python-version: [ 3.9 ]
     env:
-      CHIA_ROOT: ${{ github.workspace }}/.chia/mainnet
+      CHIA_ROOT: ${{ github.workspace }}/.floteo/mainnet
       BLOCKS_AND_PLOTS_VERSION: 0.29.0
 
     steps:
@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: 'Chia-Network/test-cache'
-          path: '.chia'
+          path: '.floteo'
           ref: ${{ env.BLOCKS_AND_PLOTS_VERSION }}
           fetch-depth: 1
 
@@ -71,7 +71,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           development: true
 
-      - uses: chia-network/actions/activate-venv@main
+      - uses: floteo-network/actions/activate-venv@main
 
       - name: pytest
         run: |

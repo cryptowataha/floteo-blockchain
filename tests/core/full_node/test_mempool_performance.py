@@ -4,13 +4,13 @@ import logging
 
 import pytest
 
-from chia.protocols import full_node_protocol
-from chia.types.peer_info import PeerInfo
-from chia.util.ints import uint16
-from chia.wallet.transaction_record import TransactionRecord
-from chia.wallet.wallet_node import WalletNode
+from floteo.protocols import full_node_protocol
+from floteo.types.peer_info import PeerInfo
+from floteo.util.ints import uint16
+from floteo.wallet.transaction_record import TransactionRecord
+from floteo.wallet.wallet_node import WalletNode
 from tests.connection_utils import connect_and_get_peer
-from chia.simulator.time_out_assert import time_out_assert
+from floteo.simulator.time_out_assert import time_out_assert
 from tests.util.misc import assert_runtime
 
 

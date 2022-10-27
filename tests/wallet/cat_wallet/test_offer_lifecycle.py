@@ -3,24 +3,24 @@ from typing import Any, Dict, Optional, List
 import pytest
 from blspy import G2Element
 
-from chia.types.announcement import Announcement
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.coin_spend import CoinSpend
-from chia.types.mempool_inclusion_status import MempoolInclusionStatus
-from chia.types.spend_bundle import SpendBundle
-from chia.util.ints import uint64
-from chia.wallet.cat_wallet.cat_utils import (
+from floteo.types.announcement import Announcement
+from floteo.types.blockchain_format.coin import Coin
+from floteo.types.blockchain_format.program import Program
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.coin_spend import CoinSpend
+from floteo.types.mempool_inclusion_status import MempoolInclusionStatus
+from floteo.types.spend_bundle import SpendBundle
+from floteo.util.ints import uint64
+from floteo.wallet.cat_wallet.cat_utils import (
     construct_cat_puzzle,
     SpendableCAT,
     unsigned_spend_bundle_for_spendable_cats,
 )
-from chia.wallet.puzzles.cat_loader import CAT_MOD
-from chia.wallet.outer_puzzles import AssetType
-from chia.wallet.puzzle_drivers import PuzzleInfo
-from chia.wallet.payment import Payment
-from chia.wallet.trading.offer import Offer, NotarizedPayment
+from floteo.wallet.puzzles.cat_loader import CAT_MOD
+from floteo.wallet.outer_puzzles import AssetType
+from floteo.wallet.puzzle_drivers import PuzzleInfo
+from floteo.wallet.payment import Payment
+from floteo.wallet.trading.offer import Offer, NotarizedPayment
 from tests.clvm.benchmark_costs import cost_of_spend_bundle
 
 acs = Program.to(1)

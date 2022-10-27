@@ -63,7 +63,7 @@ get_madmax_url() {
   OS="$3" # "macos", others
   ARCH="$4" # "intel", "m1", "arm64", "x86-64"
 
-  GITHUB_BASE_URL="https://github.com/Chia-Network/chia-plotter-madmax/releases/download"
+  GITHUB_BASE_URL="https://github.com/Chia-Network/floteo-plotter-madmax/releases/download"
   MADMAX_FILENAME="$(get_madmax_filename "${KSIZE}" "${MADMAX_VER}" "${OS}" "${ARCH}")"
 
   echo "${GITHUB_BASE_URL}/${MADMAX_VER}/${MADMAX_FILENAME}"
@@ -100,7 +100,7 @@ if [ "${SCRIPT_DIR}" != "$(pwd)" ]; then
 fi
 
 if [ -z "$VIRTUAL_ENV" ]; then
-  echo "This requires the chia python virtual environment."
+  echo "This requires the floteo python virtual environment."
   echo "Execute '. ./activate' before running."
   exit 1
 fi

@@ -107,7 +107,7 @@ jobs:
                 ${{ inputs.matrix_mode }}: True
 
     env:
-      CHIA_ROOT: ${{ github.workspace }}/.chia/mainnet
+      CHIA_ROOT: ${{ github.workspace }}/.floteo/mainnet
       JOB_FILE_NAME: tests_${{ matrix.os.file_name }}_python-${{ matrix.python.file_name }}_${{ matrix.configuration.name }}
       BLOCKS_AND_PLOTS_VERSION: 0.29.0
 
@@ -169,23 +169,23 @@ jobs:
         id: test-blocks-plots
         with:
           path: |
-            ${{ github.workspace }}/.chia/blocks
-            ${{ github.workspace }}/.chia/test-plots
+            ${{ github.workspace }}/.floteo/blocks
+            ${{ github.workspace }}/.floteo/test-plots
           key: ${{ env.BLOCKS_AND_PLOTS_VERSION }}
 
       - name: Checkout test blocks and plots (macOS, Ubuntu)
         if: steps.test-blocks-plots.outputs.cache-hit != 'true' && (matrix.os.matrix == 'ubuntu' || matrix.os.matrix == 'macos')
         run: |
           wget -qO- https://github.com/Chia-Network/test-cache/archive/refs/tags/${{ env.BLOCKS_AND_PLOTS_VERSION }}.tar.gz | tar xzf -
-          mkdir ${{ github.workspace }}/.chia
-          mv ${{ github.workspace }}/test-cache-${{ env.BLOCKS_AND_PLOTS_VERSION }}/* ${{ github.workspace }}/.chia
+          mkdir ${{ github.workspace }}/.floteo
+          mv ${{ github.workspace }}/test-cache-${{ env.BLOCKS_AND_PLOTS_VERSION }}/* ${{ github.workspace }}/.floteo
 
       - name: Checkout test blocks and plots (Windows)
         if: steps.test-blocks-plots.outputs.cache-hit != 'true' && matrix.os.matrix == 'windows'
         run: |
           Invoke-WebRequest -OutFile blocks_and_plots.zip https://github.com/Chia-Network/test-cache/archive/refs/tags/${{ env.BLOCKS_AND_PLOTS_VERSION }}.zip; Expand-Archive blocks_and_plots.zip -DestinationPath .
-          mkdir ${{ github.workspace }}/.chia
-          mv ${{ github.workspace }}/test-cache-${{ env.BLOCKS_AND_PLOTS_VERSION }}/* ${{ github.workspace }}/.chia
+          mkdir ${{ github.workspace }}/.floteo
+          mv ${{ github.workspace }}/test-cache-${{ env.BLOCKS_AND_PLOTS_VERSION }}/* ${{ github.workspace }}/.floteo
 
       - name: Install boost (macOS)
         if: matrix.os.matrix == 'macos'
@@ -197,7 +197,7 @@ jobs:
           python-version: ${{ matrix.python.install_sh }}
           development: true
 
-      - uses: chia-network/actions/activate-venv@main
+      - uses: floteo-network/actions/activate-venv@main
 
       - name: Install timelord
         if: matrix.configuration.install_timelord
@@ -209,7 +209,7 @@ jobs:
         env:
           ENABLE_PYTEST_MONITOR: ${{ matrix.os.matrix == 'ubuntu' && matrix.configuration.enable_pytest_monitor || '' }}
         run: |
-          pytest --cov=chia --cov=tests --cov-config=.coveragerc --cov-report= --durations=10 ${{ matrix.configuration.pytest_parallel_args[matrix.os.matrix] }} -m "not benchmark" ${{ env.ENABLE_PYTEST_MONITOR }} ${{ matrix.configuration.test_files }}
+          pytest --cov=floteo --cov=tests --cov-config=.coveragerc --cov-report= --durations=10 ${{ matrix.configuration.pytest_parallel_args[matrix.os.matrix] }} -m "not benchmark" ${{ env.ENABLE_PYTEST_MONITOR }} ${{ matrix.configuration.test_files }}
 
       - name: Process coverage data
         run: |

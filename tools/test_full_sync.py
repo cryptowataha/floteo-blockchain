@@ -17,18 +17,18 @@ import aiosqlite
 import click
 import zstd
 
-import chia.server.ws_connection as ws
-from chia.cmds.init_funcs import chia_init
-from chia.consensus.default_constants import DEFAULT_CONSTANTS
-from chia.full_node.full_node import FullNode
-from chia.protocols import full_node_protocol
-from chia.server.outbound_message import Message, NodeType
-from chia.simulator.block_tools import make_unfinished_block
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.full_block import FullBlock
-from chia.types.peer_info import PeerInfo
-from chia.util.config import load_config
-from chia.util.ints import uint16
+import floteo.server.ws_connection as ws
+from floteo.cmds.init_funcs import chia_init
+from floteo.consensus.default_constants import DEFAULT_CONSTANTS
+from floteo.full_node.full_node import FullNode
+from floteo.protocols import full_node_protocol
+from floteo.server.outbound_message import Message, NodeType
+from floteo.simulator.block_tools import make_unfinished_block
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.full_block import FullBlock
+from floteo.types.peer_info import PeerInfo
+from floteo.util.config import load_config
+from floteo.util.ints import uint16
 from tools.test_constants import test_constants as TEST_CONSTANTS
 
 

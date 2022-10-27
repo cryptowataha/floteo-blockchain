@@ -8,10 +8,10 @@ import subprocess
 from dataclasses import dataclass
 from typing import IO, TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Union
 
-from chia.data_layer.data_layer_util import NodeType, Side, Status
-from chia.data_layer.data_store import DataStore
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.tree_hash import bytes32
+from floteo.data_layer.data_layer_util import NodeType, Side, Status
+from floteo.data_layer.data_store import DataStore
+from floteo.types.blockchain_format.program import Program
+from floteo.types.blockchain_format.tree_hash import bytes32
 
 # from subprocess.pyi
 _FILE = Union[None, int, IO[Any]]
@@ -141,7 +141,7 @@ class ChiaRoot:
             kwargs["env"]["SYSTEMROOT"] = os.environ["SYSTEMROOT"]
 
         modified_args: List[Union[str, os_PathLike_str]] = [
-            self.scripts_path.joinpath("chia"),
+            self.scripts_path.joinpath("floteo"),
             "--root-path",
             self.path,
             *args,

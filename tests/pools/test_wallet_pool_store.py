@@ -4,13 +4,13 @@ from typing import Optional
 import pytest
 from clvm_tools import binutils
 
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.program import Program, SerializedProgram
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.coin_spend import CoinSpend
-from chia.util.ints import uint64
+from floteo.types.blockchain_format.coin import Coin
+from floteo.types.blockchain_format.program import Program, SerializedProgram
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.coin_spend import CoinSpend
+from floteo.util.ints import uint64
 
-from chia.wallet.wallet_pool_store import WalletPoolStore
+from floteo.wallet.wallet_pool_store import WalletPoolStore
 from tests.util.db_connection import DBConnection
 
 

@@ -11,23 +11,23 @@ import pytest
 import pytest_asyncio
 from blspy import G1Element
 
-from chia.farmer.farmer_api import Farmer
-from chia.harvester.harvester_api import Harvester
-from chia.plot_sync.delta import Delta, PathListDelta, PlotListDelta
-from chia.plot_sync.receiver import Receiver
-from chia.plot_sync.sender import Sender
-from chia.plot_sync.util import Constants, State
-from chia.plotting.manager import PlotManager
-from chia.plotting.util import add_plot_directory, remove_plot_directory
-from chia.protocols.harvester_protocol import Plot
-from chia.server.start_service import Service
-from chia.server.ws_connection import ProtocolMessageTypes
-from chia.simulator.block_tools import BlockTools
-from chia.simulator.time_out_assert import time_out_assert
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.config import create_default_chia_config, lock_and_load_config, save_config
-from chia.util.ints import uint8, uint32, uint64
-from chia.util.streamable import _T_Streamable
+from floteo.farmer.farmer_api import Farmer
+from floteo.harvester.harvester_api import Harvester
+from floteo.plot_sync.delta import Delta, PathListDelta, PlotListDelta
+from floteo.plot_sync.receiver import Receiver
+from floteo.plot_sync.sender import Sender
+from floteo.plot_sync.util import Constants, State
+from floteo.plotting.manager import PlotManager
+from floteo.plotting.util import add_plot_directory, remove_plot_directory
+from floteo.protocols.harvester_protocol import Plot
+from floteo.server.start_service import Service
+from floteo.server.ws_connection import ProtocolMessageTypes
+from floteo.simulator.block_tools import BlockTools
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.util.config import create_default_chia_config, lock_and_load_config, save_config
+from floteo.util.ints import uint8, uint32, uint64
+from floteo.util.streamable import _T_Streamable
 from tests.plot_sync.util import start_harvester_service
 from tests.plotting.test_plot_manager import Directory, MockPlotInfo
 from tests.plotting.util import get_test_plots

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from chia.wallet.chialisp import (
+from floteo.wallet.chialisp import (
     apply,
     args,
     cons,

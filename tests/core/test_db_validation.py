@@ -8,16 +8,16 @@ from typing import List
 
 import pytest
 
-from chia.cmds.db_validate_func import validate_v2
-from chia.consensus.blockchain import Blockchain
-from chia.consensus.default_constants import DEFAULT_CONSTANTS
-from chia.consensus.multiprocess_validation import PreValidationResult
-from chia.full_node.block_store import BlockStore
-from chia.full_node.coin_store import CoinStore
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.full_block import FullBlock
-from chia.util.db_wrapper import DBWrapper2
-from chia.util.ints import uint64
+from floteo.cmds.db_validate_func import validate_v2
+from floteo.consensus.blockchain import Blockchain
+from floteo.consensus.default_constants import DEFAULT_CONSTANTS
+from floteo.consensus.multiprocess_validation import PreValidationResult
+from floteo.full_node.block_store import BlockStore
+from floteo.full_node.coin_store import CoinStore
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.full_block import FullBlock
+from floteo.util.db_wrapper import DBWrapper2
+from floteo.util.ints import uint64
 from tests.setup_nodes import test_constants
 from tests.util.temp_file import TempFile
 
@@ -132,7 +132,7 @@ async def make_db(db_file: Path, blocks: List[FullBlock]) -> None:
     db_wrapper = await DBWrapper2.create(database=db_file, reader_count=1, db_version=2)
     try:
         async with db_wrapper.writer_maybe_transaction() as conn:
-            # this is done by chia init normally
+            # this is done by floteo init normally
             await conn.execute("CREATE TABLE database_version(version int)")
             await conn.execute("INSERT INTO database_version VALUES (2)")
 

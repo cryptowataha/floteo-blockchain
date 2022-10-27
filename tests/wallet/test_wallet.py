@@ -5,26 +5,26 @@ from typing import Any, Dict, List, Tuple
 
 import pytest
 from blspy import AugSchemeMPL, G1Element, G2Element
-from chia.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from chia.protocols.full_node_protocol import RespondBlock
-from chia.rpc.wallet_rpc_api import WalletRpcApi
-from chia.server.server import ChiaServer
-from chia.simulator.full_node_simulator import FullNodeSimulator
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.peer_info import PeerInfo
-from chia.util.bech32m import encode_puzzle_hash
-from chia.util.ints import uint16, uint32, uint64
-from chia.wallet.derive_keys import master_sk_to_wallet_sk
-from chia.wallet.transaction_record import TransactionRecord
-from chia.wallet.util.compute_memos import compute_memos
-from chia.wallet.util.transaction_type import TransactionType
-from chia.wallet.util.wallet_types import AmountWithPuzzlehash
-from chia.wallet.wallet_node import WalletNode, get_wallet_db_path
-from chia.wallet.wallet_state_manager import WalletStateManager
-from chia.simulator.block_tools import BlockTools
-from chia.simulator.time_out_assert import time_out_assert, time_out_assert_not_none
+from floteo.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from floteo.protocols.full_node_protocol import RespondBlock
+from floteo.rpc.wallet_rpc_api import WalletRpcApi
+from floteo.server.server import ChiaServer
+from floteo.simulator.full_node_simulator import FullNodeSimulator
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
+from floteo.types.blockchain_format.program import Program
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.peer_info import PeerInfo
+from floteo.util.bech32m import encode_puzzle_hash
+from floteo.util.ints import uint16, uint32, uint64
+from floteo.wallet.derive_keys import master_sk_to_wallet_sk
+from floteo.wallet.transaction_record import TransactionRecord
+from floteo.wallet.util.compute_memos import compute_memos
+from floteo.wallet.util.transaction_type import TransactionType
+from floteo.wallet.util.wallet_types import AmountWithPuzzlehash
+from floteo.wallet.wallet_node import WalletNode, get_wallet_db_path
+from floteo.wallet.wallet_state_manager import WalletStateManager
+from floteo.simulator.block_tools import BlockTools
+from floteo.simulator.time_out_assert import time_out_assert, time_out_assert_not_none
 from tests.util.wallet_is_synced import wallet_is_synced
 from tests.wallet.cat_wallet.test_cat_wallet import tx_in_pool
 
@@ -938,7 +938,7 @@ class TestWalletSimulator:
 
 
 def test_get_wallet_db_path_v2_r1() -> None:
-    root_path: Path = Path("/x/y/z/.chia/mainnet").resolve()
+    root_path: Path = Path("/x/y/z/.floteo/mainnet").resolve()
     config: Dict[str, Any] = {
         "database_path": "wallet/db/blockchain_wallet_v2_r1_CHALLENGE_KEY.sqlite",
         "selected_network": "mainnet",
@@ -950,7 +950,7 @@ def test_get_wallet_db_path_v2_r1() -> None:
 
 
 def test_get_wallet_db_path_v2() -> None:
-    root_path: Path = Path("/x/y/z/.chia/mainnet").resolve()
+    root_path: Path = Path("/x/y/z/.floteo/mainnet").resolve()
     config: Dict[str, Any] = {
         "database_path": "wallet/db/blockchain_wallet_v2_CHALLENGE_KEY.sqlite",
         "selected_network": "mainnet",
@@ -962,7 +962,7 @@ def test_get_wallet_db_path_v2() -> None:
 
 
 def test_get_wallet_db_path_v1() -> None:
-    root_path: Path = Path("/x/y/z/.chia/mainnet").resolve()
+    root_path: Path = Path("/x/y/z/.floteo/mainnet").resolve()
     config: Dict[str, Any] = {
         "database_path": "wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite",
         "selected_network": "mainnet",
@@ -974,7 +974,7 @@ def test_get_wallet_db_path_v1() -> None:
 
 
 def test_get_wallet_db_path_testnet() -> None:
-    root_path: Path = Path("/x/y/z/.chia/testnet").resolve()
+    root_path: Path = Path("/x/y/z/.floteo/testnet").resolve()
     config: Dict[str, Any] = {
         "database_path": "wallet/db/blockchain_wallet_v2_CHALLENGE_KEY.sqlite",
         "selected_network": "testnet",

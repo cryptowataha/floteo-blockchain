@@ -6,31 +6,31 @@ import pytest
 from aiosqlite import Error as AIOSqliteError
 from colorlog import getLogger
 
-from chia.consensus.block_record import BlockRecord
-from chia.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from chia.full_node.full_node_api import FullNodeAPI
-from chia.full_node.mempool_manager import MempoolManager
-from chia.full_node.weight_proof import WeightProofHandler
-from chia.protocols import full_node_protocol, wallet_protocol
-from chia.protocols.protocol_message_types import ProtocolMessageTypes
-from chia.protocols.shared_protocol import Capability
-from chia.protocols.wallet_protocol import RequestAdditions, RespondAdditions, RespondBlockHeaders, SendTransaction
-from chia.server.outbound_message import Message
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol
-from chia.simulator.time_out_assert import time_out_assert, time_out_assert_not_none
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.peer_info import PeerInfo
-from chia.util.block_cache import BlockCache
-from chia.util.hash import std_hash
-from chia.util.ints import uint16, uint32, uint64
-from chia.wallet.nft_wallet.nft_wallet import NFTWallet
-from chia.wallet.transaction_record import TransactionRecord
-from chia.wallet.util.compute_memos import compute_memos
-from chia.wallet.util.wallet_sync_utils import PeerRequestException
-from chia.wallet.util.wallet_types import AmountWithPuzzlehash
-from chia.wallet.wallet_coin_record import WalletCoinRecord
-from chia.wallet.wallet_weight_proof_handler import get_wp_fork_point
+from floteo.consensus.block_record import BlockRecord
+from floteo.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from floteo.full_node.full_node_api import FullNodeAPI
+from floteo.full_node.mempool_manager import MempoolManager
+from floteo.full_node.weight_proof import WeightProofHandler
+from floteo.protocols import full_node_protocol, wallet_protocol
+from floteo.protocols.protocol_message_types import ProtocolMessageTypes
+from floteo.protocols.shared_protocol import Capability
+from floteo.protocols.wallet_protocol import RequestAdditions, RespondAdditions, RespondBlockHeaders, SendTransaction
+from floteo.server.outbound_message import Message
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol
+from floteo.simulator.time_out_assert import time_out_assert, time_out_assert_not_none
+from floteo.types.blockchain_format.program import Program
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.peer_info import PeerInfo
+from floteo.util.block_cache import BlockCache
+from floteo.util.hash import std_hash
+from floteo.util.ints import uint16, uint32, uint64
+from floteo.wallet.nft_wallet.nft_wallet import NFTWallet
+from floteo.wallet.transaction_record import TransactionRecord
+from floteo.wallet.util.compute_memos import compute_memos
+from floteo.wallet.util.wallet_sync_utils import PeerRequestException
+from floteo.wallet.util.wallet_types import AmountWithPuzzlehash
+from floteo.wallet.wallet_coin_record import WalletCoinRecord
+from floteo.wallet.wallet_weight_proof_handler import get_wp_fork_point
 from tests.connection_utils import disconnect_all, disconnect_all_and_reconnect
 from tests.setup_nodes import test_constants
 from tests.util.wallet_is_synced import wallet_is_synced
@@ -1114,7 +1114,7 @@ class TestWalletSync:
         # Create a new NFT and send it to the farmer's NFT wallet
         metadata = Program.to(
             [
-                ("u", ["https://www.chia.net/img/branding/chia-logo.svg"]),
+                ("u", ["https://www.floteo.net/img/branding/floteo-logo.svg"]),
                 ("h", "0xD4584AD463139FA8C0D9F68F4B59F185"),
             ]
         )

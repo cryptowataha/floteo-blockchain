@@ -2,13 +2,13 @@ from __future__ import annotations
 
 import pytest
 
-from chia.plot_sync.exceptions import AlreadyStartedError, InvalidConnectionTypeError
-from chia.plot_sync.sender import ExpectedResponse, Sender
-from chia.plot_sync.util import Constants
-from chia.protocols.harvester_protocol import PlotSyncIdentifier, PlotSyncResponse
-from chia.server.ws_connection import NodeType, ProtocolMessageTypes
-from chia.simulator.block_tools import BlockTools
-from chia.util.ints import int16, uint64
+from floteo.plot_sync.exceptions import AlreadyStartedError, InvalidConnectionTypeError
+from floteo.plot_sync.sender import ExpectedResponse, Sender
+from floteo.plot_sync.util import Constants
+from floteo.protocols.harvester_protocol import PlotSyncIdentifier, PlotSyncResponse
+from floteo.server.ws_connection import NodeType, ProtocolMessageTypes
+from floteo.simulator.block_tools import BlockTools
+from floteo.util.ints import int16, uint64
 from tests.plot_sync.util import get_dummy_connection, plot_sync_identifier
 
 

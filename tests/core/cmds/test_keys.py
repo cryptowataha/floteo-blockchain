@@ -3,12 +3,12 @@ import os
 import pytest
 import re
 
-from chia.cmds.chia import cli
-from chia.cmds.keys import delete_all_cmd, generate_and_print_cmd, sign_cmd, verify_cmd
-from chia.util.config import load_config
-from chia.util.file_keyring import FileKeyring
-from chia.util.keychain import KeyData, DEFAULT_USER, DEFAULT_SERVICE, Keychain, generate_mnemonic
-from chia.util.keyring_wrapper import DEFAULT_KEYS_ROOT_PATH, KeyringWrapper, LegacyKeyring
+from floteo.cmds.floteo import cli
+from floteo.cmds.keys import delete_all_cmd, generate_and_print_cmd, sign_cmd, verify_cmd
+from floteo.util.config import load_config
+from floteo.util.file_keyring import FileKeyring
+from floteo.util.keychain import KeyData, DEFAULT_USER, DEFAULT_SERVICE, Keychain, generate_mnemonic
+from floteo.util.keyring_wrapper import DEFAULT_KEYS_ROOT_PATH, KeyringWrapper, LegacyKeyring
 from click.testing import CliRunner, Result
 from keyring.backend import KeyringBackend
 from pathlib import Path
@@ -66,7 +66,7 @@ class DummyLegacyKeyring(KeyringBackend):
 
 @pytest.fixture(scope="function")
 def empty_keyring():
-    with TempKeyring(user="user-chia-1.8", service="chia-user-chia-1.8") as keychain:
+    with TempKeyring(user="user-floteo-1.8", service="floteo-user-floteo-1.8") as keychain:
         yield keychain
         KeyringWrapper.cleanup_shared_instance()
 
@@ -340,7 +340,7 @@ class TestKeysCommands:
         assert runner.invoke(cli, [*base_params, "init"]).exit_code == 0
         # Make sure the command works with no keys
         result = runner.invoke(cli, [*base_params, *cmd_params])
-        assert result.output == "No keys are present in the keychain. Generate them with 'chia keys generate'\n"
+        assert result.output == "No keys are present in the keychain. Generate them with 'floteo keys generate'\n"
         # Add 10 keys to the keychain, give every other a label
         keys = [KeyData.generate(f"key_{i}" if i % 2 == 0 else None) for i in range(10)]
         for key in keys:
@@ -361,7 +361,7 @@ class TestKeysCommands:
 
     def test_show(self, keyring_with_one_key, tmp_path):
         """
-        Test that the `chia keys show` command shows the correct key.
+        Test that the `floteo keys show` command shows the correct key.
         """
 
         keychain = keyring_with_one_key
@@ -388,7 +388,7 @@ class TestKeysCommands:
 
     def test_show_json(self, keyring_with_one_key, tmp_path):
         """
-        Test that the `chia keys show --json` command shows the correct key.
+        Test that the `floteo keys show --json` command shows the correct key.
         """
 
         keychain = keyring_with_one_key
@@ -417,7 +417,7 @@ class TestKeysCommands:
 
     def test_show_mnemonic(self, keyring_with_one_key, tmp_path):
         """
-        Test that the `chia keys show --show-mnemonic-seed` command shows the key's mnemonic seed.
+        Test that the `floteo keys show --show-mnemonic-seed` command shows the key's mnemonic seed.
         """
 
         keychain = keyring_with_one_key
@@ -446,7 +446,7 @@ class TestKeysCommands:
 
     def test_show_mnemonic_json(self, keyring_with_one_key, tmp_path):
         """
-        Test that the `chia keys show --show-mnemonic-seed --json` command shows the key's mnemonic seed.
+        Test that the `floteo keys show --show-mnemonic-seed --json` command shows the key's mnemonic seed.
         """
 
         keychain = keyring_with_one_key
@@ -621,7 +621,7 @@ class TestKeysCommands:
 
     def test_generate_and_print(self):
         """
-        Test the `chia keys generate_and_print` command.
+        Test the `floteo keys generate_and_print` command.
         """
 
         runner = CliRunner()
@@ -632,7 +632,7 @@ class TestKeysCommands:
 
     def test_sign(self, keyring_with_one_key):
         """
-        Test the `chia keys sign` command.
+        Test the `floteo keys sign` command.
         """
 
         message: str = "hello world"
@@ -665,7 +665,7 @@ class TestKeysCommands:
 
     def test_sign_non_observer(self, keyring_with_one_key):
         """
-        Test the `chia keys sign` command with a non-observer key.
+        Test the `floteo keys sign` command with a non-observer key.
         """
 
         message: str = "hello world"
@@ -737,7 +737,7 @@ class TestKeysCommands:
 
     def test_verify(self):
         """
-        Test the `chia keys verify` command.
+        Test the `floteo keys verify` command.
         """
 
         message: str = "hello world"
@@ -758,7 +758,7 @@ class TestKeysCommands:
 
     def test_derive_search(self, tmp_path, keyring_with_one_key):
         """
-        Test the `chia keys derive search` command, searching a public and private key
+        Test the `floteo keys derive search` command, searching a public and private key
         """
 
         keychain = keyring_with_one_key
@@ -817,7 +817,7 @@ class TestKeysCommands:
 
     def test_derive_search_wallet_address(self, tmp_path, keyring_with_one_key):
         """
-        Test the `chia keys derive search` command, searching for a wallet address
+        Test the `floteo keys derive search` command, searching for a wallet address
         """
 
         keychain = keyring_with_one_key
@@ -866,7 +866,7 @@ class TestKeysCommands:
 
     def test_derive_search_wallet_testnet_address(self, tmp_path, keyring_with_one_key):
         """
-        Test the `chia keys derive search` command, searching for a testnet wallet address
+        Test the `floteo keys derive search` command, searching for a testnet wallet address
         """
 
         keychain = keyring_with_one_key
@@ -917,7 +917,7 @@ class TestKeysCommands:
 
     def test_derive_search_failure(self, tmp_path, keyring_with_one_key):
         """
-        Test the `chia keys derive search` command with a failing search.
+        Test the `floteo keys derive search` command with a failing search.
         """
 
         keychain = keyring_with_one_key
@@ -956,7 +956,7 @@ class TestKeysCommands:
 
     def test_derive_search_hd_path(self, tmp_path, empty_keyring, mnemonic_seed_file):
         """
-        Test the `chia keys derive search` command, searching under a provided HD path.
+        Test the `floteo keys derive search` command, searching under a provided HD path.
         """
 
         keychain = empty_keyring
@@ -1007,7 +1007,7 @@ class TestKeysCommands:
 
     def test_derive_wallet_address(self, tmp_path, keyring_with_one_key):
         """
-        Test the `chia keys derive wallet-address` command, generating a couple of wallet addresses.
+        Test the `floteo keys derive wallet-address` command, generating a couple of wallet addresses.
         """
 
         keychain = keyring_with_one_key
@@ -1066,7 +1066,7 @@ class TestKeysCommands:
 
     def test_derive_wallet_testnet_address(self, tmp_path, keyring_with_one_key):
         """
-        Test the `chia keys derive wallet-address` command, generating a couple of testnet wallet addresses.
+        Test the `floteo keys derive wallet-address` command, generating a couple of testnet wallet addresses.
         """
 
         keychain = keyring_with_one_key
@@ -1127,7 +1127,7 @@ class TestKeysCommands:
 
     def test_derive_child_keys(self, tmp_path, keyring_with_one_key):
         """
-        Test the `chia keys derive child-keys` command, generating a couple of derived keys.
+        Test the `floteo keys derive child-keys` command, generating a couple of derived keys.
         """
 
         keychain = keyring_with_one_key
@@ -1206,7 +1206,7 @@ class TestKeysCommands:
 
     def test_migration_not_needed(self, tmp_path, setup_keyringwrapper, monkeypatch):
         """
-        Test the `chia keys migrate` command when no migration is necessary
+        Test the `floteo keys migrate` command when no migration is necessary
         """
         keys_root_path = KeyringWrapper.get_shared_instance().keys_root_path
         runner = CliRunner()
@@ -1236,7 +1236,7 @@ class TestKeysCommands:
 
     def test_migration_full(self, tmp_path, setup_legacy_keyringwrapper):
         """
-        Test the `chia keys migrate` command when a full migration is needed
+        Test the `floteo keys migrate` command when a full migration is needed
         """
 
         legacy_keyring = KeyringWrapper.get_shared_instance().legacy_keyring
@@ -1281,7 +1281,7 @@ class TestKeysCommands:
             nonlocal legacy_keyring
             return legacy_keyring
 
-        from chia.util import keyring_wrapper
+        from floteo.util import keyring_wrapper
 
         monkeypatch.setattr(keyring_wrapper, "get_legacy_keyring_instance", mock_get_legacy_keyring_instance)
 

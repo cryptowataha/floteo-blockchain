@@ -1,8 +1,8 @@
 import pytest
 
-from chia.types.full_block import FullBlock
-from chia.types.header_block import HeaderBlock
-from chia.wallet.key_val_store import KeyValStore
+from floteo.types.full_block import FullBlock
+from floteo.types.header_block import HeaderBlock
+from floteo.wallet.key_val_store import KeyValStore
 from tests.util.db_connection import DBConnection
 
 

@@ -2,16 +2,16 @@ import logging
 import pytest
 from clvm.casts import int_to_bytes
 
-from chia.full_node.hint_store import HintStore
-from chia.protocols.full_node_protocol import RespondBlock
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.spend_bundle import SpendBundle
-from chia.util.ints import uint64
+from floteo.full_node.hint_store import HintStore
+from floteo.protocols.full_node_protocol import RespondBlock
+from floteo.types.blockchain_format.coin import Coin
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.condition_opcodes import ConditionOpcode
+from floteo.types.condition_with_args import ConditionWithArgs
+from floteo.types.spend_bundle import SpendBundle
+from floteo.util.ints import uint64
 from tests.util.db_connection import DBConnection
-from chia.simulator.wallet_tools import WalletTool
+from floteo.simulator.wallet_tools import WalletTool
 
 
 log = logging.getLogger(__name__)

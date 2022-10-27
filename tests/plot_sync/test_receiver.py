@@ -10,10 +10,10 @@ from typing import Any, Callable, List, Tuple, Type, Union
 import pytest
 from blspy import G1Element
 
-from chia.plot_sync.delta import Delta
-from chia.plot_sync.receiver import Receiver, Sync
-from chia.plot_sync.util import ErrorCodes, State
-from chia.protocols.harvester_protocol import (
+from floteo.plot_sync.delta import Delta
+from floteo.plot_sync.receiver import Receiver, Sync
+from floteo.plot_sync.util import ErrorCodes, State
+from floteo.protocols.harvester_protocol import (
     Plot,
     PlotSyncDone,
     PlotSyncIdentifier,
@@ -22,11 +22,11 @@ from chia.protocols.harvester_protocol import (
     PlotSyncResponse,
     PlotSyncStart,
 )
-from chia.server.ws_connection import NodeType
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.ints import uint8, uint32, uint64
-from chia.util.misc import get_list_or_len
-from chia.util.streamable import _T_Streamable
+from floteo.server.ws_connection import NodeType
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.util.ints import uint8, uint32, uint64
+from floteo.util.misc import get_list_or_len
+from floteo.util.streamable import _T_Streamable
 from tests.plot_sync.util import get_dummy_connection
 
 log = logging.getLogger(__name__)

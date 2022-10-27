@@ -1,7 +1,7 @@
 import pytest
-from chia.util.errors import InvalidPathError
-from chia.util.misc import format_bytes, validate_directory_writable
-from chia.util.misc import format_minutes
+from floteo.util.errors import InvalidPathError
+from floteo.util.misc import format_bytes, validate_directory_writable
+from floteo.util.misc import format_minutes
 
 
 class TestMisc:

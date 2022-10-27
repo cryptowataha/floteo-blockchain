@@ -69,6 +69,6 @@ jobs:
         python-version: ${{ matrix.python.major_dot_minor }}
         development: true
 
-    - uses: chia-network/actions/activate-venv@main
+    - uses: floteo-network/actions/activate-venv@main
 
     - run: pre-commit run --all-files --verbose

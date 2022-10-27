@@ -9,47 +9,47 @@ import pytest
 from blspy import AugSchemeMPL, G2Element
 from clvm.casts import int_to_bytes
 
-from chia.consensus.block_header_validation import validate_finished_header_block
-from chia.consensus.block_rewards import calculate_base_farmer_reward
-from chia.consensus.blockchain import ReceiveBlockResult
-from chia.consensus.coinbase import create_farmer_coin
-from chia.consensus.multiprocess_validation import PreValidationResult
-from chia.consensus.pot_iterations import is_overflow_block
-from chia.full_node.bundle_tools import detect_potential_template_generator
-from chia.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from chia.types.blockchain_format.classgroup import ClassgroupElement
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.foliage import TransactionsInfo
-from chia.types.blockchain_format.program import SerializedProgram
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.blockchain_format.slots import InfusedChallengeChainSubSlot
-from chia.types.blockchain_format.vdf import VDFInfo, VDFProof
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.end_of_slot_bundle import EndOfSubSlotBundle
-from chia.types.full_block import FullBlock
-from chia.types.generator_types import BlockGenerator
-from chia.types.spend_bundle import SpendBundle
-from chia.types.unfinished_block import UnfinishedBlock
-from chia.util.generator_tools import get_block_header
-from chia.util.vdf_prover import get_vdf_info_and_proof
-from chia.simulator.block_tools import create_block_tools_async
-from chia.util.errors import Err
-from chia.util.hash import std_hash
-from chia.util.ints import uint8, uint64, uint32
-from chia.util.merkle_set import MerkleSet
-from chia.util.recursive_replace import recursive_replace
+from floteo.consensus.block_header_validation import validate_finished_header_block
+from floteo.consensus.block_rewards import calculate_base_farmer_reward
+from floteo.consensus.blockchain import ReceiveBlockResult
+from floteo.consensus.coinbase import create_farmer_coin
+from floteo.consensus.multiprocess_validation import PreValidationResult
+from floteo.consensus.pot_iterations import is_overflow_block
+from floteo.full_node.bundle_tools import detect_potential_template_generator
+from floteo.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from floteo.types.blockchain_format.classgroup import ClassgroupElement
+from floteo.types.blockchain_format.coin import Coin
+from floteo.types.blockchain_format.foliage import TransactionsInfo
+from floteo.types.blockchain_format.program import SerializedProgram
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.blockchain_format.slots import InfusedChallengeChainSubSlot
+from floteo.types.blockchain_format.vdf import VDFInfo, VDFProof
+from floteo.types.condition_opcodes import ConditionOpcode
+from floteo.types.condition_with_args import ConditionWithArgs
+from floteo.types.end_of_slot_bundle import EndOfSubSlotBundle
+from floteo.types.full_block import FullBlock
+from floteo.types.generator_types import BlockGenerator
+from floteo.types.spend_bundle import SpendBundle
+from floteo.types.unfinished_block import UnfinishedBlock
+from floteo.util.generator_tools import get_block_header
+from floteo.util.vdf_prover import get_vdf_info_and_proof
+from floteo.simulator.block_tools import create_block_tools_async
+from floteo.util.errors import Err
+from floteo.util.hash import std_hash
+from floteo.util.ints import uint8, uint64, uint32
+from floteo.util.merkle_set import MerkleSet
+from floteo.util.recursive_replace import recursive_replace
 from tests.blockchain.blockchain_test_utils import (
     _validate_and_add_block,
     _validate_and_add_block_multi_error,
     _validate_and_add_block_multi_result,
     _validate_and_add_block_no_error,
 )
-from chia.simulator.wallet_tools import WalletTool
+from floteo.simulator.wallet_tools import WalletTool
 from tests.setup_nodes import test_constants
 from tests.util.blockchain import create_blockchain
 from tests.util.keyring import TempKeyring
-from chia.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
+from floteo.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
     DEFAULT_HIDDEN_PUZZLE_HASH,
     calculate_synthetic_secret_key,
 )

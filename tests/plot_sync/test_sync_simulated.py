@@ -13,21 +13,21 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import pytest
 from blspy import G1Element
 
-from chia.farmer.farmer_api import Farmer
-from chia.harvester.harvester_api import Harvester
-from chia.plot_sync.receiver import Receiver
-from chia.plot_sync.sender import Sender
-from chia.plot_sync.util import Constants
-from chia.plotting.manager import PlotManager
-from chia.plotting.util import PlotInfo
-from chia.protocols.harvester_protocol import PlotSyncError, PlotSyncResponse
-from chia.server.start_service import Service
-from chia.server.ws_connection import ProtocolMessageTypes, WSChiaConnection, make_msg
-from chia.simulator.block_tools import BlockTools
-from chia.simulator.time_out_assert import time_out_assert
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.generator_tools import list_to_batches
-from chia.util.ints import int16, uint64
+from floteo.farmer.farmer_api import Farmer
+from floteo.harvester.harvester_api import Harvester
+from floteo.plot_sync.receiver import Receiver
+from floteo.plot_sync.sender import Sender
+from floteo.plot_sync.util import Constants
+from floteo.plotting.manager import PlotManager
+from floteo.plotting.util import PlotInfo
+from floteo.protocols.harvester_protocol import PlotSyncError, PlotSyncResponse
+from floteo.server.start_service import Service
+from floteo.server.ws_connection import ProtocolMessageTypes, WSChiaConnection, make_msg
+from floteo.simulator.block_tools import BlockTools
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.util.generator_tools import list_to_batches
+from floteo.util.ints import int16, uint64
 from tests.plot_sync.util import start_harvester_service
 
 log = logging.getLogger(__name__)

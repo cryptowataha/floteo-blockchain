@@ -55,7 +55,7 @@ def main() -> int:
                 "--dest",
                 os.fspath(directory_path),
                 "--extra-index",
-                "https://pypi.chia.net/simple/",
+                "https://pypi.floteo.net/simple/",
                 package_and_extras,
             ],
             check=True,

@@ -3,15 +3,15 @@ from typing import List
 
 import pytest
 
-from chia.protocols.protocol_message_types import ProtocolMessageTypes
-from chia.protocols.shared_protocol import Capability
-from chia.server.outbound_message import make_msg
-from chia.server.rate_limit_numbers import get_rate_limits_to_use, rate_limits as rl_numbers, compose_rate_limits
-from chia.server.rate_limits import RateLimiter
-from chia.server.server import ChiaServer
-from chia.server.ws_connection import WSChiaConnection
-from chia.types.peer_info import PeerInfo
-from chia.util.ints import uint16
+from floteo.protocols.protocol_message_types import ProtocolMessageTypes
+from floteo.protocols.shared_protocol import Capability
+from floteo.server.outbound_message import make_msg
+from floteo.server.rate_limit_numbers import get_rate_limits_to_use, rate_limits as rl_numbers, compose_rate_limits
+from floteo.server.rate_limits import RateLimiter
+from floteo.server.server import ChiaServer
+from floteo.server.ws_connection import WSChiaConnection
+from floteo.types.peer_info import PeerInfo
+from floteo.util.ints import uint16
 from tests.conftest import node_with_params
 from tests.setup_nodes import test_constants
 

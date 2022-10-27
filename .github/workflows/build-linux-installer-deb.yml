@@ -87,7 +87,7 @@ jobs:
         AWS_SECRET: "${{ secrets.INSTALLER_UPLOAD_KEY }}"
         GLUE_ACCESS_TOKEN: "${{ secrets.GLUE_ACCESS_TOKEN }}"
 
-      # Get the most recent release from chia-plotter-madmax
+      # Get the most recent release from floteo-plotter-madmax
     - uses: actions/github-script@v6
       id: 'latest-madmax'
       with:
@@ -96,15 +96,15 @@ jobs:
         script: |
           const release = await github.rest.repos.getLatestRelease({
             owner: 'Chia-Network',
-            repo: 'chia-plotter-madmax',
+            repo: 'floteo-plotter-madmax',
           });
           return release.data.tag_name;
 
     - name: Get latest madmax plotter
       run: |
         mkdir "$GITHUB_WORKSPACE/madmax"
-        wget -O "$GITHUB_WORKSPACE/madmax/chia_plot" https://github.com/Chia-Network/chia-plotter-madmax/releases/download/${{ steps.latest-madmax.outputs.result }}/chia_plot-${{ steps.latest-madmax.outputs.result }}-x86-64
-        wget -O "$GITHUB_WORKSPACE/madmax/chia_plot_k34" https://github.com/Chia-Network/chia-plotter-madmax/releases/download/${{ steps.latest-madmax.outputs.result }}/chia_plot_k34-${{ steps.latest-madmax.outputs.result }}-x86-64
+        wget -O "$GITHUB_WORKSPACE/madmax/chia_plot" https://github.com/Chia-Network/floteo-plotter-madmax/releases/download/${{ steps.latest-madmax.outputs.result }}/chia_plot-${{ steps.latest-madmax.outputs.result }}-x86-64
+        wget -O "$GITHUB_WORKSPACE/madmax/chia_plot_k34" https://github.com/Chia-Network/floteo-plotter-madmax/releases/download/${{ steps.latest-madmax.outputs.result }}/chia_plot_k34-${{ steps.latest-madmax.outputs.result }}-x86-64
         chmod +x "$GITHUB_WORKSPACE/madmax/chia_plot"
         chmod +x "$GITHUB_WORKSPACE/madmax/chia_plot_k34"
 
@@ -144,23 +144,23 @@ jobs:
         python-version: ${{ matrix.python-version }}
         development: true
 
-    - uses: chia-network/actions/activate-venv@main
+    - uses: floteo-network/actions/activate-venv@main
 
     - name: Prepare GUI cache
       id: gui-ref
       run: |
-        gui_ref=$(git submodule status chia-blockchain-gui | sed -e 's/^ //g' -e 's/ chia-blockchain-gui.*$//g')
+        gui_ref=$(git submodule status floteo-blockchain-gui | sed -e 's/^ //g' -e 's/ floteo-blockchain-gui.*$//g')
         echo "${gui_ref}"
         echo "::set-output name=GUI_REF::${gui_ref}"
-        echo "rm -rf ./chia-blockchain-gui"
-        rm -rf ./chia-blockchain-gui
+        echo "rm -rf ./floteo-blockchain-gui"
+        rm -rf ./floteo-blockchain-gui
 
     - name: Cache GUI
       uses: actions/cache@v3
       id: cache-gui
       with:
-        path: ./chia-blockchain-gui
-        key: ${{ runner.os }}-deb-chia-blockchain-gui-${{ steps.gui-ref.outputs.GUI_REF }}
+        path: ./floteo-blockchain-gui
+        key: ${{ runner.os }}-deb-floteo-blockchain-gui-${{ steps.gui-ref.outputs.GUI_REF }}
 
     - if: steps.cache-gui.outputs.cache-hit != 'true'
       name: Build GUI
@@ -180,7 +180,7 @@ jobs:
     - name: Upload Linux artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: chia-installers-linux-deb-intel
+        name: floteo-installers-linux-deb-intel
         path: ${{ github.workspace }}/build_scripts/final_installer/
 
     - name: Configure AWS Credentials
@@ -199,8 +199,8 @@ jobs:
         GIT_SHORT_HASH=$(echo "${GITHUB_SHA}" | cut -c1-8)
         CHIA_DEV_BUILD=${CHIA_INSTALLER_VERSION}-$GIT_SHORT_HASH
         echo "CHIA_DEV_BUILD=$CHIA_DEV_BUILD" >>$GITHUB_ENV
-        aws s3 cp "$GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb" "s3://download.chia.net/dev/chia-blockchain_${CHIA_DEV_BUILD}_amd64.deb"
-        aws s3 cp "$GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb" "s3://download.chia.net/dev/chia-blockchain-cli_${CHIA_DEV_BUILD}-1_amd64.deb"
+        aws s3 cp "$GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb" "s3://download.floteo.net/dev/floteo-blockchain_${CHIA_DEV_BUILD}_amd64.deb"
+        aws s3 cp "$GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb" "s3://download.floteo.net/dev/floteo-blockchain-cli_${CHIA_DEV_BUILD}-1_amd64.deb"
 
     - name: Create Checksums
       if: env.FULL_RELEASE == 'true' || github.ref == 'refs/heads/main'
@@ -208,8 +208,8 @@ jobs:
         CHIA_INSTALLER_VERSION: ${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}
       run: |
         ls $GITHUB_WORKSPACE/build_scripts/final_installer/
-        sha256sum $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb > $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.sha256
-        sha256sum $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb > $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.sha256
+        sha256sum $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb > $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.sha256
+        sha256sum $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb > $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.sha256
         ls $GITHUB_WORKSPACE/build_scripts/final_installer/
 
     - name: Create .deb torrent
@@ -218,31 +218,31 @@ jobs:
         CHIA_INSTALLER_VERSION: ${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        py3createtorrent -f -t udp://tracker.opentrackr.org:1337/announce $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb -o $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.torrent --webseed https://download.chia.net/install/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb
-        py3createtorrent -f -t udp://tracker.opentrackr.org:1337/announce $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb -o $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.torrent --webseed https://download.chia.net/install/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb
-        gh release upload $RELEASE_TAG $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.torrent
+        py3createtorrent -f -t udp://tracker.opentrackr.org:1337/announce $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb -o $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.torrent --webseed https://download.floteo.net/install/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb
+        py3createtorrent -f -t udp://tracker.opentrackr.org:1337/announce $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb -o $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.torrent --webseed https://download.floteo.net/install/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb
+        gh release upload $RELEASE_TAG $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.torrent
 
     - name: Upload Dev Installer
       if: steps.check_secrets.outputs.HAS_AWS_SECRET && github.ref == 'refs/heads/main'
       env:
         CHIA_INSTALLER_VERSION: ${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}
       run: |
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb s3://download.chia.net/latest-dev/chia-blockchain_amd64_latest_dev.deb
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.sha256 s3://download.chia.net/latest-dev/chia-blockchain_amd64_latest_dev.deb.sha256
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb s3://download.chia.net/latest-dev/chia-blockchain-cli_amd64_latest_dev.deb
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.sha256 s3://download.chia.net/latest-dev/chia-blockchain-cli_amd64_latest_dev.deb.sha256
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb s3://download.floteo.net/latest-dev/floteo-blockchain_amd64_latest_dev.deb
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.sha256 s3://download.floteo.net/latest-dev/floteo-blockchain_amd64_latest_dev.deb.sha256
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb s3://download.floteo.net/latest-dev/floteo-blockchain-cli_amd64_latest_dev.deb
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.sha256 s3://download.floteo.net/latest-dev/floteo-blockchain-cli_amd64_latest_dev.deb.sha256
 
     - name: Upload Release Files
       if: steps.check_secrets.outputs.HAS_AWS_SECRET && env.FULL_RELEASE == 'true'
       env:
         CHIA_INSTALLER_VERSION: ${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}
       run: |
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb s3://download.chia.net/install/
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.sha256 s3://download.chia.net/install/
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.torrent s3://download.chia.net/torrents/
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb s3://download.chia.net/install/
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.sha256 s3://download.chia.net/install/
-        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/chia-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.torrent s3://download.chia.net/torrents/
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb s3://download.floteo.net/install/
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.sha256 s3://download.floteo.net/install/
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb.torrent s3://download.floteo.net/torrents/
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb s3://download.floteo.net/install/
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.sha256 s3://download.floteo.net/install/
+        aws s3 cp $GITHUB_WORKSPACE/build_scripts/final_installer/floteo-blockchain-cli_${CHIA_INSTALLER_VERSION}-1_amd64.deb.torrent s3://download.floteo.net/torrents/
 
     - name: Get tag name
       if: startsWith(github.ref, 'refs/tags/')
@@ -259,7 +259,7 @@ jobs:
       run: |
         gh release upload \
           $RELEASE_TAG \
-          build_scripts/final_installer/chia-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb
+          build_scripts/final_installer/floteo-blockchain_${CHIA_INSTALLER_VERSION}_amd64.deb
 
     - name: Mark installer complete
       if: steps.check_secrets.outputs.HAS_GLUE_SECRET && env.FULL_RELEASE == 'true'
@@ -268,4 +268,4 @@ jobs:
 
     - name: Remove working files to exclude from cache
       run: |
-        rm -rf ./chia-blockchain-gui/packages/gui/daemon
+        rm -rf ./floteo-blockchain-gui/packages/gui/daemon

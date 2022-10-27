@@ -3,4 +3,4 @@
 
 set -e
 
-ln -s /opt/chia/resources/app.asar.unpacked/daemon/chia /usr/bin/chia || true
+ln -s /opt/floteo/resources/app.asar.unpacked/daemon/floteo /usr/bin/floteo || true

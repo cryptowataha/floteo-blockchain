@@ -8,25 +8,25 @@ import pytest
 from blspy import AugSchemeMPL, G1Element, G2Element
 from clvm_tools.binutils import disassemble
 
-from chia.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from chia.full_node.mempool_manager import MempoolManager
-from chia.rpc.wallet_rpc_api import WalletRpcApi
-from chia.simulator.full_node_simulator import FullNodeSimulator
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
-from chia.simulator.time_out_assert import time_out_assert, time_out_assert_not_none
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.peer_info import PeerInfo
-from chia.types.spend_bundle import SpendBundle
-from chia.util.bech32m import encode_puzzle_hash
-from chia.util.byte_types import hexstr_to_bytes
-from chia.util.ints import uint16, uint32, uint64
-from chia.wallet.did_wallet.did_wallet import DIDWallet
-from chia.wallet.nft_wallet.nft_wallet import NFTWallet
-from chia.wallet.util.address_type import AddressType
-from chia.wallet.util.compute_memos import compute_memos
-from chia.wallet.util.wallet_types import WalletType
-from chia.wallet.wallet_state_manager import WalletStateManager
+from floteo.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from floteo.full_node.mempool_manager import MempoolManager
+from floteo.rpc.wallet_rpc_api import WalletRpcApi
+from floteo.simulator.full_node_simulator import FullNodeSimulator
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
+from floteo.simulator.time_out_assert import time_out_assert, time_out_assert_not_none
+from floteo.types.blockchain_format.program import Program
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.peer_info import PeerInfo
+from floteo.types.spend_bundle import SpendBundle
+from floteo.util.bech32m import encode_puzzle_hash
+from floteo.util.byte_types import hexstr_to_bytes
+from floteo.util.ints import uint16, uint32, uint64
+from floteo.wallet.did_wallet.did_wallet import DIDWallet
+from floteo.wallet.nft_wallet.nft_wallet import NFTWallet
+from floteo.wallet.util.address_type import AddressType
+from floteo.wallet.util.compute_memos import compute_memos
+from floteo.wallet.util.wallet_types import WalletType
+from floteo.wallet.wallet_state_manager import WalletStateManager
 from tests.util.wallet_is_synced import wallet_is_synced
 
 
@@ -133,7 +133,7 @@ async def test_nft_wallet_creation_automatically(two_wallet_nodes: Any, trusted:
     )
     metadata = Program.to(
         [
-            ("u", ["https://www.chia.net/img/branding/chia-logo.svg"]),
+            ("u", ["https://www.floteo.net/img/branding/floteo-logo.svg"]),
             ("h", "0xD4584AD463139FA8C0D9F68F4B59F185"),
         ]
     )
@@ -228,7 +228,7 @@ async def test_nft_wallet_creation_and_transfer(two_wallet_nodes: Any, trusted: 
     )
     metadata = Program.to(
         [
-            ("u", ["https://www.chia.net/img/branding/chia-logo.svg"]),
+            ("u", ["https://www.floteo.net/img/branding/floteo-logo.svg"]),
             ("h", "0xD4584AD463139FA8C0D9F68F4B59F185"),
         ]
     )
@@ -384,7 +384,7 @@ async def test_nft_wallet_rpc_creation_and_list(two_wallet_nodes: Any, trusted: 
             "wallet_id": nft_wallet_0_id,
             "artist_address": ph,
             "hash": "0xD4584AD463139FA8C0D9F68F4B59F185",
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
         }
     )
 
@@ -449,7 +449,7 @@ async def test_nft_wallet_rpc_creation_and_list(two_wallet_nodes: Any, trusted: 
 )
 @pytest.mark.asyncio
 async def test_nft_wallet_rpc_update_metadata(two_wallet_nodes: Any, trusted: Any) -> None:
-    from chia.types.blockchain_format.sized_bytes import bytes32
+    from floteo.types.blockchain_format.sized_bytes import bytes32
 
     num_blocks = 3
     full_nodes, wallets, _ = two_wallet_nodes
@@ -502,7 +502,7 @@ async def test_nft_wallet_rpc_update_metadata(two_wallet_nodes: Any, trusted: An
             "wallet_id": nft_wallet_0_id,
             "artist_address": ph,
             "hash": "0xD4584AD463139FA8C0D9F68F4B59F185",
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
         }
     )
 
@@ -524,7 +524,7 @@ async def test_nft_wallet_rpc_update_metadata(two_wallet_nodes: Any, trusted: An
     assert coin["chain_info"] == disassemble(
         Program.to(
             [
-                ("u", ["https://www.chia.net/img/branding/chia-logo.svg"]),
+                ("u", ["https://www.floteo.net/img/branding/floteo-logo.svg"]),
                 ("h", hexstr_to_bytes("0xD4584AD463139FA8C0D9F68F4B59F185")),
                 ("mu", []),
                 ("lu", []),
@@ -563,7 +563,7 @@ async def test_nft_wallet_rpc_update_metadata(two_wallet_nodes: Any, trusted: An
     assert coin["mint_height"] > 0
     uris = coin["data_uris"]
     assert len(uris) == 1
-    assert "https://www.chia.net/img/branding/chia-logo.svg" in uris
+    assert "https://www.floteo.net/img/branding/floteo-logo.svg" in uris
     assert len(coin["metadata_uris"]) == 1
     assert "http://metadata" == coin["metadata_uris"][0]
     assert len(coin["license_uris"]) == 0
@@ -692,7 +692,7 @@ async def test_nft_with_did_wallet_creation(two_wallet_nodes: Any, trusted: Any)
         {
             "wallet_id": nft_wallet_0_id,
             "hash": "0xD4584AD463139FA8C0D9F68F4B59F185",
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
             "target_address": encode_puzzle_hash(nft_ph, "txch"),
         }
     )
@@ -745,7 +745,7 @@ async def test_nft_with_did_wallet_creation(two_wallet_nodes: Any, trusted: Any)
     did_nft = coins[0].to_json_dict()
     assert did_nft["mint_height"] > 0
     assert did_nft["supports_did"]
-    assert did_nft["data_uris"][0] == "https://www.chia.net/img/branding/chia-logo.svg"
+    assert did_nft["data_uris"][0] == "https://www.floteo.net/img/branding/floteo-logo.svg"
     assert did_nft["data_hash"] == "0xD4584AD463139FA8C0D9F68F4B59F185".lower()
     assert did_nft["owner_did"][2:] == hex_did_id
     # Check unassigned NFT
@@ -842,7 +842,7 @@ async def test_nft_rpc_mint(two_wallet_nodes: Any, trusted: Any) -> None:
         {
             "wallet_id": nft_wallet_0_id,
             "hash": data_hash_param,
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
             "license_uris": license_uris,
             "license_hash": license_hash,
             "meta_hash": meta_hash,
@@ -953,7 +953,7 @@ async def test_nft_transfer_nft_with_did(two_wallet_nodes: Any, trusted: Any) ->
         {
             "wallet_id": nft_wallet_0_id,
             "hash": "0xD4584AD463139FA8C0D9F68F4B59F185",
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
             "fee": fee,
             "did_id": hmr_did_id,
         }
@@ -1104,8 +1104,8 @@ async def test_update_metadata_for_nft_did(two_wallet_nodes: Any, trusted: Any) 
         {
             "wallet_id": nft_wallet_0_id,
             "hash": "0xD4584AD463139FA8C0D9F68F4B59F185",
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
-            "mu": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
+            "mu": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
             "did": hex_did_id,
         }
     )
@@ -1163,7 +1163,7 @@ async def test_update_metadata_for_nft_did(two_wallet_nodes: Any, trusted: Any) 
     assert coin["mint_height"] > 0
     uris = coin["data_uris"]
     assert len(uris) == 1
-    assert "https://www.chia.net/img/branding/chia-logo.svg" in uris
+    assert "https://www.floteo.net/img/branding/floteo-logo.svg" in uris
     assert len(coin["metadata_uris"]) == 1
     assert "http://metadata" == coin["metadata_uris"][0]
     assert len(coin["license_uris"]) == 0
@@ -1234,8 +1234,8 @@ async def test_nft_set_did(two_wallet_nodes: Any, trusted: Any) -> None:
         {
             "wallet_id": nft_wallet_0_id,
             "hash": "0xD4584AD463139FA8C0D9F68F4B59F185",
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
-            "mu": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
+            "mu": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
             "did_id": "",
         }
     )
@@ -1386,8 +1386,8 @@ async def test_set_nft_status(two_wallet_nodes: Any, trusted: Any) -> None:
         {
             "wallet_id": nft_wallet_0_id,
             "hash": "0xD4584AD463139FA8C0D9F68F4B59F185",
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
-            "mu": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
+            "mu": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
         }
     )
     assert resp.get("success")
@@ -1471,8 +1471,8 @@ async def test_nft_sign_message(two_wallet_nodes: Any, trusted: Any) -> None:
         {
             "wallet_id": nft_wallet_0_id,
             "hash": "0xD4584AD463139FA8C0D9F68F4B59F185",
-            "uris": ["https://www.chia.net/img/branding/chia-logo.svg"],
-            "mu": ["https://www.chia.net/img/branding/chia-logo.svg"],
+            "uris": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
+            "mu": ["https://www.floteo.net/img/branding/floteo-logo.svg"],
         }
     )
     assert resp.get("success")

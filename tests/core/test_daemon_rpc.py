@@ -1,7 +1,7 @@
 import pytest
 
-from chia import __version__
-from chia.daemon.client import connect_to_daemon
+from floteo import __version__
+from floteo.daemon.client import connect_to_daemon
 
 
 class TestDaemonRpc:

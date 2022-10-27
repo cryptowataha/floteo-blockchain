@@ -5,17 +5,17 @@ from random import Random
 
 import pytest
 
-from chia.consensus.cost_calculator import NPCResult
-from chia.full_node.bitcoin_fee_estimator import BitcoinFeeEstimator
-from chia.full_node.coin_store import CoinStore
-from chia.full_node.fee_estimate_store import FeeStore
-from chia.full_node.fee_estimator import SmartFeeEstimator
-from chia.full_node.fee_tracker import FeeTracker
-from chia.full_node.mempool_manager import MempoolManager
-from chia.simulator.wallet_tools import WalletTool
-from chia.types.blockchain_format.coin import Coin
-from chia.types.mempool_item import MempoolItem
-from chia.util.ints import uint32, uint64
+from floteo.consensus.cost_calculator import NPCResult
+from floteo.full_node.bitcoin_fee_estimator import BitcoinFeeEstimator
+from floteo.full_node.coin_store import CoinStore
+from floteo.full_node.fee_estimate_store import FeeStore
+from floteo.full_node.fee_estimator import SmartFeeEstimator
+from floteo.full_node.fee_tracker import FeeTracker
+from floteo.full_node.mempool_manager import MempoolManager
+from floteo.simulator.wallet_tools import WalletTool
+from floteo.types.blockchain_format.coin import Coin
+from floteo.types.mempool_item import MempoolItem
+from floteo.util.ints import uint32, uint64
 from tests.core.consensus.test_pot_iterations import test_constants
 from tests.util.db_connection import DBConnection
 

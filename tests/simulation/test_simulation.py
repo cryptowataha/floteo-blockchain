@@ -3,16 +3,16 @@ from typing import AsyncIterator, List, Tuple
 import pytest
 import pytest_asyncio
 
-from chia.cmds.units import units
-from chia.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
-from chia.server.server import ChiaServer
-from chia.simulator.block_tools import create_block_tools_async, BlockTools
-from chia.simulator.full_node_simulator import FullNodeSimulator
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol, GetAllCoinsProtocol, ReorgProtocol
-from chia.simulator.time_out_assert import time_out_assert
-from chia.types.peer_info import PeerInfo
-from chia.util.ints import uint16, uint32, uint64
-from chia.wallet.wallet_node import WalletNode
+from floteo.cmds.units import units
+from floteo.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
+from floteo.server.server import ChiaServer
+from floteo.simulator.block_tools import create_block_tools_async, BlockTools
+from floteo.simulator.full_node_simulator import FullNodeSimulator
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol, GetAllCoinsProtocol, ReorgProtocol
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.types.peer_info import PeerInfo
+from floteo.util.ints import uint16, uint32, uint64
+from floteo.wallet.wallet_node import WalletNode
 from tests.core.node_height import node_height_at_least
 from tests.setup_nodes import (
     SimulatorsAndWallets,
@@ -253,11 +253,11 @@ class TestSimulation:
         argvalues=[
             [0, 0],
             [1, 2],
-            [(2 * units["chia"]) - 1, 2],
-            [2 * units["chia"], 2],
-            [(2 * units["chia"]) + 1, 4],
-            [3 * units["chia"], 4],
-            [10 * units["chia"], 10],
+            [(2 * units["floteo"]) - 1, 2],
+            [2 * units["floteo"], 2],
+            [(2 * units["floteo"]) + 1, 4],
+            [3 * units["floteo"], 4],
+            [10 * units["floteo"], 10],
         ],
     )
     async def test_simulation_farm_rewards(

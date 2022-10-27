@@ -56,7 +56,7 @@ if [ "$(uname -m)" = "armv7l" ]; then
   echo "WARNING:"
   echo "The Chia Blockchain requires a 64 bit OS and this is 32 bit armv7l"
   echo "For more information, see"
-  echo "https://github.com/Chia-Network/chia-blockchain/wiki/Raspberry-Pi"
+  echo "https://github.com/Chia-Network/floteo-blockchain/wiki/Raspberry-Pi"
   echo "Exiting."
   exit 1
 fi
@@ -99,7 +99,7 @@ install_python3_and_sqlite3_from_source_with_yum() {
   echo "cd $TMP_PATH"
   cd "$TMP_PATH"
   # Install sqlite>=3.37
-  # yum install sqlite-devel brings sqlite3.7 which is not compatible with chia
+  # yum install sqlite-devel brings sqlite3.7 which is not compatible with floteo
   echo "wget https://www.sqlite.org/2022/sqlite-autoconf-3370200.tar.gz"
   wget https://www.sqlite.org/2022/sqlite-autoconf-3370200.tar.gz
   tar xf sqlite-autoconf-3370200.tar.gz
@@ -112,7 +112,7 @@ install_python3_and_sqlite3_from_source_with_yum() {
   make -j"$(nproc)" | stdbuf -o0 cut -b1-"$(tput cols)" | sed -u 'i\\o033[2K' | stdbuf -o0 tr '\n' '\r'; echo
   echo "sudo make install"
   sudo make install | stdbuf -o0 cut -b1-"$(tput cols)" | sed -u 'i\\o033[2K' | stdbuf -o0 tr '\n' '\r'; echo
-  # yum install python3 brings Python3.6 which is not supported by chia
+  # yum install python3 brings Python3.6 which is not supported by floteo
   cd ..
   echo "wget https://www.python.org/ftp/python/3.9.11/Python-3.9.11.tgz"
   wget https://www.python.org/ftp/python/3.9.11/Python-3.9.11.tgz
@@ -338,8 +338,8 @@ python -m pip install --upgrade pip
 python -m pip install wheel
 #if [ "$INSTALL_PYTHON_VERSION" = "3.8" ]; then
 # This remains in case there is a diversion of binary wheels
-python -m pip install --extra-index-url https://pypi.chia.net/simple/ miniupnpc==2.2.2
-python -m pip install -e ."${EXTRAS}" --extra-index-url https://pypi.chia.net/simple/
+python -m pip install --extra-index-url https://pypi.floteo.net/simple/ miniupnpc==2.2.2
+python -m pip install -e ."${EXTRAS}" --extra-index-url https://pypi.floteo.net/simple/
 
 if [ -n "$PLOTTER_INSTALL" ]; then
   set +e
@@ -356,9 +356,9 @@ echo "Chia blockchain install.sh complete."
 echo "For assistance join us on Keybase in the #support chat channel:"
 echo "https://keybase.io/team/chia_network.public"
 echo ""
-echo "Try the Quick Start Guide to running chia-blockchain:"
-echo "https://github.com/Chia-Network/chia-blockchain/wiki/Quick-Start-Guide"
+echo "Try the Quick Start Guide to running floteo-blockchain:"
+echo "https://github.com/Chia-Network/floteo-blockchain/wiki/Quick-Start-Guide"
 echo ""
 echo "To install the GUI type 'sh install-gui.sh' after '. ./activate'."
 echo ""
-echo "Type '. ./activate' and then 'chia init' to begin."
+echo "Type '. ./activate' and then 'floteo init' to begin."

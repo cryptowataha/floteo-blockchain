@@ -14,16 +14,16 @@ from blspy import G2Element
 
 from clvm_tools.binutils import assemble
 
-from chia.types.announcement import Announcement
-from chia.types.blockchain_format.program import Program
-from chia.types.coin_record import CoinRecord
-from chia.types.coin_spend import CoinSpend
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.full_block import FullBlock
-from chia.types.spend_bundle import SpendBundle
-from chia.util.errors import Err
-from chia.util.ints import uint32
-from chia.simulator.block_tools import BlockTools
+from floteo.types.announcement import Announcement
+from floteo.types.blockchain_format.program import Program
+from floteo.types.coin_record import CoinRecord
+from floteo.types.coin_spend import CoinSpend
+from floteo.types.condition_opcodes import ConditionOpcode
+from floteo.types.full_block import FullBlock
+from floteo.types.spend_bundle import SpendBundle
+from floteo.util.errors import Err
+from floteo.util.ints import uint32
+from floteo.simulator.block_tools import BlockTools
 from tests.util.keyring import TempKeyring
 
 from .ram_db import create_ram_blockchain

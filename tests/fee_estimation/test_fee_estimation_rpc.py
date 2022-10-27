@@ -5,17 +5,17 @@ from typing import List, Tuple
 import pytest
 import pytest_asyncio
 
-from chia.full_node.full_node import FullNode
-from chia.rpc.full_node_rpc_api import FullNodeRpcApi
-from chia.rpc.full_node_rpc_client import FullNodeRpcClient
-from chia.server.start_service import Service
-from chia.simulator.block_tools import BlockTools
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol
-from chia.simulator.wallet_tools import WalletTool
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.ints import uint64
-from chia.wallet.wallet_node import WalletNode
+from floteo.full_node.full_node import FullNode
+from floteo.rpc.full_node_rpc_api import FullNodeRpcApi
+from floteo.rpc.full_node_rpc_client import FullNodeRpcClient
+from floteo.server.start_service import Service
+from floteo.simulator.block_tools import BlockTools
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol
+from floteo.simulator.wallet_tools import WalletTool
+from floteo.types.blockchain_format.coin import Coin
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.util.ints import uint64
+from floteo.wallet.wallet_node import WalletNode
 
 
 @pytest_asyncio.fixture(scope="function")

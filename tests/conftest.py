@@ -9,25 +9,25 @@ import pytest
 import pytest_asyncio
 import tempfile
 
-from chia.full_node.full_node_api import FullNodeAPI
-from chia.server.server import ChiaServer
-from chia.simulator.full_node_simulator import FullNodeSimulator
-from chia.wallet.wallet import Wallet
+from floteo.full_node.full_node_api import FullNodeAPI
+from floteo.server.server import ChiaServer
+from floteo.simulator.full_node_simulator import FullNodeSimulator
+from floteo.wallet.wallet import Wallet
 from typing import Any, AsyncIterator, Dict, List, Tuple, Union
-from chia.server.start_service import Service
+from floteo.server.start_service import Service
 
 # Set spawn after stdlib imports, but before other imports
-from chia.clvm.spend_sim import SimClient, SpendSim
-from chia.full_node.full_node_api import FullNodeAPI
-from chia.protocols import full_node_protocol
-from chia.server.server import ChiaServer
-from chia.simulator.full_node_simulator import FullNodeSimulator
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol
+from floteo.clvm.spend_sim import SimClient, SpendSim
+from floteo.full_node.full_node_api import FullNodeAPI
+from floteo.protocols import full_node_protocol
+from floteo.server.server import ChiaServer
+from floteo.simulator.full_node_simulator import FullNodeSimulator
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol
 
-from chia.types.peer_info import PeerInfo
-from chia.util.config import create_default_chia_config, lock_and_load_config
-from chia.util.ints import uint16
-from chia.wallet.wallet import Wallet
+from floteo.types.peer_info import PeerInfo
+from floteo.util.config import create_default_chia_config, lock_and_load_config
+from floteo.util.ints import uint16
+from floteo.wallet.wallet import Wallet
 from tests.core.data_layer.util import ChiaRoot
 from tests.core.node_height import node_height_at_least
 from tests.setup_nodes import (
@@ -41,15 +41,15 @@ from tests.setup_nodes import (
     setup_two_nodes,
 )
 from tests.simulation.test_simulation import test_constants_modified
-from chia.simulator.time_out_assert import time_out_assert
-from chia.simulator.wallet_tools import WalletTool
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.simulator.wallet_tools import WalletTool
 from tests.util.wallet_is_synced import wallet_is_synced
 
 multiprocessing.set_start_method("spawn")
 
 from pathlib import Path
-from chia.util.keyring_wrapper import KeyringWrapper
-from chia.simulator.block_tools import BlockTools, test_constants, create_block_tools, create_block_tools_async
+from floteo.util.keyring_wrapper import KeyringWrapper
+from floteo.simulator.block_tools import BlockTools, test_constants, create_block_tools, create_block_tools_async
 from tests.util.keyring import TempKeyring
 from tests.setup_nodes import setup_farmer_multi_harvester
 
@@ -76,7 +76,7 @@ def self_hostname():
 
 
 # NOTE:
-#       Instantiating the bt fixture results in an attempt to create the chia root directory
+#       Instantiating the bt fixture results in an attempt to create the floteo root directory
 #       which the build scripts symlink to a sometimes-not-there directory.
 #       When not there, Python complains since, well, the symlink is not a directory nor points to a directory.
 #

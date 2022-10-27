@@ -6,27 +6,27 @@ import pytest
 from clvm.casts import int_to_bytes
 from colorlog import getLogger
 
-from chia.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
-from chia.protocols import wallet_protocol
-from chia.protocols.full_node_protocol import RespondTransaction
-from chia.protocols.protocol_message_types import ProtocolMessageTypes
-from chia.protocols.wallet_protocol import RespondToCoinUpdates, CoinStateUpdate, RespondToPhUpdates
-from chia.server.outbound_message import NodeType
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
-from chia.types.blockchain_format.coin import Coin
-from chia.types.coin_record import CoinRecord
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.peer_info import PeerInfo
-from chia.types.spend_bundle import SpendBundle
-from chia.util.ints import uint16, uint32, uint64
-from chia.wallet.wallet import Wallet
-from chia.wallet.wallet_state_manager import WalletStateManager
+from floteo.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
+from floteo.protocols import wallet_protocol
+from floteo.protocols.full_node_protocol import RespondTransaction
+from floteo.protocols.protocol_message_types import ProtocolMessageTypes
+from floteo.protocols.wallet_protocol import RespondToCoinUpdates, CoinStateUpdate, RespondToPhUpdates
+from floteo.server.outbound_message import NodeType
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
+from floteo.types.blockchain_format.coin import Coin
+from floteo.types.coin_record import CoinRecord
+from floteo.types.condition_opcodes import ConditionOpcode
+from floteo.types.condition_with_args import ConditionWithArgs
+from floteo.types.peer_info import PeerInfo
+from floteo.types.spend_bundle import SpendBundle
+from floteo.util.ints import uint16, uint32, uint64
+from floteo.wallet.wallet import Wallet
+from floteo.wallet.wallet_state_manager import WalletStateManager
 from tests.util.wallet_is_synced import wallet_is_synced
 from tests.connection_utils import add_dummy_connection
-from chia.simulator.time_out_assert import time_out_assert
+from floteo.simulator.time_out_assert import time_out_assert
 from tests.wallet.cat_wallet.test_cat_wallet import tx_in_pool
-from chia.simulator.wallet_tools import WalletTool
+from floteo.simulator.wallet_tools import WalletTool
 
 
 def wallet_height_at_least(wallet_node, h):
@@ -196,7 +196,7 @@ class TestSimpleSyncProtocol:
             await full_node_api.farm_new_transaction_block(FarmNewBlockProtocol(puzzle_hash))
 
         # Let's make sure the wallet can handle a non ephemeral launcher
-        from chia.wallet.puzzles.singleton_top_layer import SINGLETON_LAUNCHER_HASH
+        from floteo.wallet.puzzles.singleton_top_layer import SINGLETON_LAUNCHER_HASH
 
         await time_out_assert(20, wallet_is_synced, True, wallet_node, full_node_api)
         tx_record = await wallet.generate_signed_transaction(uint64(10), SINGLETON_LAUNCHER_HASH, uint64(0))

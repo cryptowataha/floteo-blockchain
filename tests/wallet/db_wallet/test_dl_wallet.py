@@ -7,16 +7,16 @@ from typing import Any, AsyncIterator, Iterator, List
 import pytest
 import pytest_asyncio
 
-from chia.data_layer.data_layer_wallet import DataLayerWallet, Mirror
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol
-from chia.simulator.time_out_assert import time_out_assert
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.peer_info import PeerInfo
-from chia.util.ints import uint16, uint32, uint64
-from chia.wallet.db_wallet.db_wallet_puzzles import create_mirror_puzzle
-from chia.wallet.util.merkle_tree import MerkleTree
+from floteo.data_layer.data_layer_wallet import DataLayerWallet, Mirror
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.types.blockchain_format.coin import Coin
+from floteo.types.blockchain_format.program import Program
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.peer_info import PeerInfo
+from floteo.util.ints import uint16, uint32, uint64
+from floteo.wallet.db_wallet.db_wallet_puzzles import create_mirror_puzzle
+from floteo.wallet.util.merkle_tree import MerkleTree
 from tests.setup_nodes import SimulatorsAndWallets, setup_simulators_and_wallets
 
 pytestmark = pytest.mark.data_layer

@@ -9,17 +9,17 @@ from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 
-from chia.protocols.shared_protocol import capabilities, protocol_version
-from chia.server.outbound_message import NodeType
-from chia.server.server import ChiaServer, ssl_context_for_client
-from chia.server.ssl_context import chia_ssl_ca_paths
-from chia.server.ws_connection import WSChiaConnection
-from chia.simulator.time_out_assert import time_out_assert
-from chia.ssl.create_ssl import generate_ca_signed_cert
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.peer_info import PeerInfo
-from chia.util.config import load_config
-from chia.util.ints import uint16
+from floteo.protocols.shared_protocol import capabilities, protocol_version
+from floteo.server.outbound_message import NodeType
+from floteo.server.server import ChiaServer, ssl_context_for_client
+from floteo.server.ssl_context import chia_ssl_ca_paths
+from floteo.server.ws_connection import WSChiaConnection
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.ssl.create_ssl import generate_ca_signed_cert
+from floteo.types.blockchain_format.sized_bytes import bytes32
+from floteo.types.peer_info import PeerInfo
+from floteo.util.config import load_config
+from floteo.util.ints import uint16
 
 log = logging.getLogger(__name__)
 

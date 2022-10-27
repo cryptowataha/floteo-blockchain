@@ -1,5 +1,5 @@
 from pathlib import Path
-from chia.util.db_wrapper import DBWrapper2
+from floteo.util.db_wrapper import DBWrapper2
 import tempfile
 
 

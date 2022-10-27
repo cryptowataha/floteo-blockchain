@@ -6,14 +6,14 @@ from typing import Optional
 
 import pytest
 
-from chia.consensus.block_record import BlockRecord
-from chia.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from chia.full_node.full_node_api import FullNodeAPI
-from chia.protocols import full_node_protocol
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol
-from chia.simulator.time_out_assert import time_out_assert
-from chia.types.peer_info import PeerInfo
-from chia.util.ints import uint16, uint32
+from floteo.consensus.block_record import BlockRecord
+from floteo.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from floteo.full_node.full_node_api import FullNodeAPI
+from floteo.protocols import full_node_protocol
+from floteo.simulator.simulator_protocol import FarmNewBlockProtocol
+from floteo.simulator.time_out_assert import time_out_assert
+from floteo.types.peer_info import PeerInfo
+from floteo.util.ints import uint16, uint32
 
 
 class TestTransactions:

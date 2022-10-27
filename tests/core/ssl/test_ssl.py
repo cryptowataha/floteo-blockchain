@@ -3,14 +3,14 @@ import asyncio
 import aiohttp
 import pytest
 
-from chia.protocols.shared_protocol import protocol_version, capabilities
-from chia.server.outbound_message import NodeType
-from chia.server.server import ChiaServer, ssl_context_for_client
-from chia.server.ssl_context import chia_ssl_ca_paths, private_ssl_ca_paths
-from chia.server.ws_connection import WSChiaConnection
-from chia.ssl.create_ssl import generate_ca_signed_cert
-from chia.types.peer_info import PeerInfo
-from chia.util.ints import uint16
+from floteo.protocols.shared_protocol import protocol_version, capabilities
+from floteo.server.outbound_message import NodeType
+from floteo.server.server import ChiaServer, ssl_context_for_client
+from floteo.server.ssl_context import chia_ssl_ca_paths, private_ssl_ca_paths
+from floteo.server.ws_connection import WSChiaConnection
+from floteo.ssl.create_ssl import generate_ca_signed_cert
+from floteo.types.peer_info import PeerInfo
+from floteo.util.ints import uint16
 
 
 async def establish_connection(server: ChiaServer, self_hostname: str, ssl_context) -> None:
